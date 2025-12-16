@@ -1,9 +1,14 @@
 import java.util.Scanner;
 
 public class Main {
+
+    private static Catalog catalog = new Catalog();
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int choice;
+
+        seedCatalog();
 
         do {
             System.out.println("=== StreamFlix ===");
@@ -15,16 +20,23 @@ public class Main {
 
             if (choice == 1) {
                 System.out.println("(Prototype) Profile selected.");
-            } else if (choice == 2) {
-                System.out.println("(Prototype) Catalog list:");
-                System.out.println("M1 - [Movie] Grover Returns (2020) - Comedy");
-                System.out.println("S1 - [Series] Stack Adventures (2023) - Comedy");
+            } 
+
+            else if (choice == 2) {
+                catalog.browse();
             }
 
             System.out.println();
         } while (choice != 0);
 
         System.out.println("Goodbye!");
+    }
+
+    private static void seedCatalog() {
+        catalog.add(new Movie("Halloween(Remake)", 2018, "Horror", 106));
+        catalog.add(new Movie("Jaws", 1975, "Horrow", 125));
+        catalog.add(new Series("Breaking Bad", 2008, "Crime Drama", 5));
+        catalog.add(new Series("Jujutsu Kaisen", 2020, "Shonen Anime", 2));
     }
 
     private static int readInt(Scanner sc, String prompt, int min, int max) {
