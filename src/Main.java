@@ -14,9 +14,10 @@ public class Main {
             System.out.println("=== StreamFlix ===");
             System.out.println("1) Select Profile");
             System.out.println("2) Browse Catalog");
+            System.out.println("3) Search");
             System.out.println("0) Exit");
 
-            choice = readInt(sc, "Choose >> ", 0, 2);
+            choice = readInt(sc, "Choose >> ", 0, 3);
 
             if (choice == 1) {
                 System.out.println("(Prototype) Profile selected.");
@@ -33,7 +34,7 @@ public class Main {
     }
 
     private static void seedCatalog() {
-        catalog.add(new Movie("Halloween(Remake)", 2018, "Horror", 106));
+        catalog.add(new Movie("Halloween Remake", 2018, "Horror", 106));
         catalog.add(new Movie("Jaws", 1975, "Horrow", 125));
         catalog.add(new Series("Breaking Bad", 2008, "Crime Drama", 5));
         catalog.add(new Series("Jujutsu Kaisen", 2020, "Shonen Anime", 2));
