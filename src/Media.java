@@ -6,7 +6,7 @@ public abstract class Media {
   public Media(String title, int year, String genre) {
     this.title = title;
     this.year = year;
-    this.genre = genre
+    this.genre = genre;
   }
 
   public String getTitle() {
