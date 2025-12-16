@@ -1,4 +1,5 @@
 public class Series exteds Media {
+  
   private int seasons;
 
   public Series(String title, int year, String genre, int seasons) {
