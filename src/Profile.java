@@ -29,7 +29,7 @@ public class Profile {
   }
 
   public void printMyList() {
-    if (myList.is.Empty()) {
+    if (myList.isEmpty()) {
       System.out.println("My list is empty.");
       return;
     }
