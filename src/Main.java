@@ -6,16 +6,17 @@ public class Main {
     private static Catalog catalog = new Catalog();
     private static ArrayList<Profile> profiles = new ArrayList<>();
     private static Profile activeProfile = null;
+    private static Player player = new Player();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int choice;
 
         seedCatalog();
 
         profiles.add(new Profile("Default"));
         activeProfile = profiles.get(0);
 
+        int choice;
         do {
             System.out.println("=== StreamFlix ===");
             System.out.println("Active Profile: " + (activeProfile == null ? "(none)" : activeProfile.getName()));
@@ -23,36 +24,34 @@ public class Main {
             System.out.println("2) Browse Catalog");
             System.out.println("3) Search");
             System.out.println("4) My List");
+            System.out.println("5) Play Title");
             System.out.println("0) Exit");
 
-            choice = readInt(sc, "Choose >> ", 0, 4);
+            choice = readInt(sc, "Choose >> ", 0, 5);
 
             if (choice == 1) {
                 selectOrCreateProfile(sc);
             } else if (choice == 2) {
                 catalog.browseNumbered();
             } else if (choice == 3) {
-                System.out.print("Search title or genre >> ");
-                String key = sc.nextLine();
-
-                ArrayList<Media> results = catalog.search(key);
-
-                if (results.isEmpty()) {
-                    System.out.println("No results.");
-                } else {
-                    System.out.println("Results:");
-                    for (Media m : results) {
-                        System.out.println(m);
-                    }
-                }
+                runSearch(sc);
             } else if (choice == 4) {
                 myListMenu(sc);
+            } else if (choice == 5) {
+                playTitle(sc);
             }
 
             System.out.println();
         } while (choice != 0);
 
         System.out.println("Goodbye!");
+    }
+
+    private static void seedCatalog() {
+        catalog.add(new Movie("Finals Week", 2021, "Comedy", 90));
+        catalog.add(new Movie("Night Shift", 2019, "Thriller", 105));
+        catalog.add(new Series("Campus Stories", 2020, "Drama", 1));
+        catalog.add(new Series("Study Group", 2024, "Comedy", 2));
     }
 
     private static void selectOrCreateProfile(Scanner sc) {
@@ -79,43 +78,72 @@ public class Main {
         }
     }
 
+    private static void runSearch(Scanner sc) {
+        System.out.print("Search title or genre >> ");
+        String key = sc.nextLine();
+
+        ArrayList<Media> results = catalog.search(key);
+
+        if (results.isEmpty()) {
+            System.out.println("No results.");
+        } else {
+            System.out.println("Results:");
+            for (Media m : results) {
+                System.out.println(m);
+            }
+        }
+    }
+
     private static void myListMenu(Scanner sc) {
         if (activeProfile == null) {
             System.out.println("Select a profile first.");
             return;
         }
 
-        System.out.println("=== My List Menu ===");
         System.out.println("1) View My List");
         System.out.println("2) Add from Catalog");
         System.out.println("3) Remove from My List");
+
         int c = readInt(sc, "Choose >> ", 1, 3);
 
         if (c == 1) {
             activeProfile.printMyList();
         } else if (c == 2) {
             catalog.browseNumbered();
+            if (catalog.getItems().isEmpty()) return;
+
             int num = readInt(sc, "Enter catalog number to add >> ", 1, catalog.getItems().size());
             Media m = catalog.getByNumber(num);
 
             boolean added = activeProfile.addToMyList(m);
-            System.out.println(added ? "Added ✅" : "Already in My List.");
+            System.out.println(added ? "Added." : "Already in My List.");
         } else {
             activeProfile.printMyList();
             if (activeProfile.getMyList().isEmpty()) return;
 
             int num = readInt(sc, "Enter My List number to remove >> ", 1, activeProfile.getMyList().size());
             boolean removed = activeProfile.removeFromMyList(num - 1);
-            System.out.println(removed ? "Removed ✅" : "Invalid choice.");
+            System.out.println(removed ? "Removed." : "Invalid choice.");
         }
     }
 
-    private static void seedCatalog() {
+    private static void playTitle(Scanner sc) {
+        if (activeProfile == null) {
+            System.out.println("Select a profile first.");
+            return;
+        }
 
-        catalog.add(new Movie("Halloween Remake", 2018, "Horror", 106));
-        catalog.add(new Movie("Jaws", 1975, "Horror", 124));
-        catalog.add(new Series("Breaking Bad", 2008, "Crime", 5));
-        catalog.add(new Series("Jujutsu Kaisen", 2020, "Anime", 2));
+        catalog.browseNumbered();
+        if (catalog.getItems().isEmpty()) return;
+
+        int num = readInt(sc, "Enter catalog number to play >> ", 1, catalog.getItems().size());
+        Media m = catalog.getByNumber(num);
+
+        if (m instanceof Playable p) {
+            player.play(p, activeProfile);
+        } else {
+            System.out.println("That item is not playable.");
+        }
     }
 
     private static int readInt(Scanner sc, String prompt, int min, int max) {
