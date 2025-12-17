@@ -139,7 +139,8 @@ public class Main {
         int num = readInt(sc, "Enter catalog number to play >> ", 1, catalog.getItems().size());
         Media m = catalog.getByNumber(num);
 
-        if (m instanceof Playable p) {
+        if (m instanceof Playable) {
+            Playable p = (Playable) m;
             player.play(p, activeProfile);
         } else {
             System.out.println("That item is not playable.");
