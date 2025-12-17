@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Profile {
   private String name;
@@ -7,6 +8,7 @@ public class Profile {
   public Profile(String name) {
     this.name = name;
     this.myList = new ArrayList<>();
+    this.progressMinutes = new HashMap<>();
   }
 
   public String getName() {
@@ -25,6 +27,7 @@ public class Profile {
 
   public boolean removeFromMyList(int index) {
     if (index < 0 || index >= myList.size()) return false;
+    myList.remove(index);
     return true;
   }
 
@@ -38,6 +41,14 @@ public class Profile {
       System.out.println((i + 1) + ") " + myList.get(i));
     }
   }
+  public int getProgress(Media m) {
+    return progressMinutes.getOrDefault(m, 0);
+  }
+
+  public void setProgress(Media m, int minutes) {
+    progressMinutes.put(m, Math.max(0, minutes);
+  }
+  
   @Override
   public String toString() {
     return name + " (My List: " + myList.size() + ")";
