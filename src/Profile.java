@@ -30,10 +30,10 @@ public class Profile {
 
   public void printMyList() {
     if (myList.is.Empty()) {
-      System.out.println("My list is empty.")
+      System.out.println("My list is empty.");
       return;
     }
-    System.out.println(=== My List (" + name + ") ===");
+    System.out.println("=== My List (" + name + ") ===");
     for (int i = 0; i < myList.size(); i++) {
       System.out.println((i + 1) + ") " + myList.get(i));
     }
