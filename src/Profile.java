@@ -46,7 +46,7 @@ public class Profile {
   }
 
   public void setProgress(Media m, int minutes) {
-    progressMinutes.put(m, Math.max(0, minutes);
+    progressMinutes.put(m, Math.max(0, minutes));
   }
   
   @Override
