@@ -111,9 +111,9 @@ public class Main {
     }
 
     private static void seedCatalog() {
-        // keep your own titles
-        catalog.add(new Movie("Finals Week", 2021, "Comedy", 90));
-        catalog.add(new Movie("Night Shift", 2019, "Thriller", 105));
+
+        catalog.add(new Movie("Halloween Remake", 2018, "Comedy", 106));
+        catalog.add(new Movie("Jaws", 1975, "Thriller", 124));
         catalog.add(new Series("Breaking Bad", 2008, "Crime Drama", 5));
         catalog.add(new Series("Jujutsu Kaisen", 2020, "Shonen Anime", 2));
     }
