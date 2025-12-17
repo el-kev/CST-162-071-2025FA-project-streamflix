@@ -19,7 +19,7 @@ public class Series extends Media implements Playable {
     public void play(Profile profile) {
         int current = profile.getProgress(this);
         int watch = 20;
-        int updated = current + watch
+        int updated = current + watch;
 
         profile.setProgress(this, updated);
 
