@@ -16,7 +16,7 @@ public class Movie extends Media {
   }
 
   @Override
-  public void play(Profile profile) {
+public void play(Profile profile) {
     int current = profile.getProgress(this);
     int watch = 25;
     int updated = Math.min(current + watch, durationMinutes);
@@ -26,9 +26,9 @@ public class Movie extends Media {
     System.out.println("Now playing: " + getTitle());
     System.out.println("Progress: " + updated + "/" + durationMinutes + " minutes");
     if (updated >= durationMinutes) {
-      System.out.println("Finished!");
-    } 
-  }
+        System.out.println("Finished!");
+    }
+}
 
   @Override
   public String toString() {
