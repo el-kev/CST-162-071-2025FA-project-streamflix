@@ -1,3 +1,3 @@
 public interface Playable {
-  void play(Profile profile);
+    void play(Profile profile);
 }
