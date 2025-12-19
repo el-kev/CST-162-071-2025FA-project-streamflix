@@ -49,9 +49,11 @@ public class Main {
 
     private static void seedCatalog() {
         catalog.add(new Movie("Halloween Remake", 2018, "Horror", 106));
-        catalog.add(new Movie("Jaws", 1975, "Horror", 124));
+        catalog.add(new Movie("Jaws", 1975, "Thriller", 124));
+        catalog.add(new Movie("The Truman Show", 1998, "Comedy", 103));
         catalog.add(new Series("Breaking Bad", 2008, "Crime", 5));
         catalog.add(new Series("Jujutsu Kaisen", 2020, "Anime", 2));
+        catalog.add(new Series("Kickin' It", 2011, "Sitcom", 4));
     }
 
     private static void selectOrCreateProfile(Scanner sc) {
