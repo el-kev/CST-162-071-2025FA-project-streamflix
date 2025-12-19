@@ -48,10 +48,10 @@ public class Main {
     }
 
     private static void seedCatalog() {
-        catalog.add(new Movie("Finals Week", 2021, "Comedy", 90));
-        catalog.add(new Movie("Night Shift", 2019, "Thriller", 105));
-        catalog.add(new Series("Campus Stories", 2020, "Drama", 1));
-        catalog.add(new Series("Study Group", 2024, "Comedy", 2));
+        catalog.add(new Movie("Halloween Remake", 2018, "Horror", 106));
+        catalog.add(new Movie("Jaws", 1975, "Horror", 124));
+        catalog.add(new Series("Breaking Bad", 2008, "Crime", 5));
+        catalog.add(new Series("Jujutsu Kaisen", 2020, "Anime", 2));
     }
 
     private static void selectOrCreateProfile(Scanner sc) {
